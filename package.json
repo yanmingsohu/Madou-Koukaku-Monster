@@ -1,0 +1,21 @@
+{
+  "name": "madou-koukaku-monster",
+  "version": "1.0.0",
+  "description": "Eushully Game - Madou Koukaku Monster Synthesis tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "keywords": [
+    "Eushully",
+    "game",
+    "Madou",
+    "Koukaku"
+  ],
+  "author": "yanming",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
