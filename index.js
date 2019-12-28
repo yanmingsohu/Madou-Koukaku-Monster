@@ -138,6 +138,24 @@ const data = {
   '普罗阿': ['劳马卡尔', '高级蛇精'],
   '普罗瓦': ['拉吉卡尔', '终极乌龟'],
   '海鲁格.普罗阿': ['普罗阿', '拉吉米尔'],
+  
+  // other
+  '泡油泥浆怪': ['食肉泥浆怪', '小火精灵'],
+  '强酸泥浆怪': ['食肉泥浆怪', '风精灵'],
+  '火岩怪': ['巨岩怪', '泡油泥浆怪'],
+  '土岩怪': ['巨岩怪', '食肉泥浆怪'],
+  '冰岩怪': ['巨岩怪', '水流泥浆怪'],
+  '大地巨岩怪': ['土岩怪', '巨岩怪'],
+  '冰河巨岩怪': ['冰岩怪', '巨岩怪'],
+  '雷霆巨岩怪': ['雷岩怪', '巨岩怪'],
+  '仇恨的电击剑': ['斩心脏的剑', '雷霆巨岩怪'],
+  '仇恨的火炎剑': ['斩心脏的剑', '烈焰巨岩怪'],
+  '仇恨的结冰剑': ['斩心脏的剑', '冰河巨岩怪'], 
+  '食尸鬼': ['吸魂灵', '吸魂灵'],
+  '吉塞拉.普罗阿': ['普罗瓦', '海鲁格.普罗阿'],
+  '地龙': ['岩龙', '仇恨的地震剑'],
+  '火龙': ['火焰龙', '仇恨的火炎剑'],
+  '水龙': ['海龙', '仇恨的结冰剑'],
 };
 
 const shop = new Set([
@@ -246,9 +264,9 @@ function hc(name, s, t) {
     let buf = [];
     space(buf, s);
     
-    s += stringlen(name) + 3;
+    s += charsize(name) + 3;
     let ra = hc(a, s, t);
-    let rb = hc(b, s += 3 + stringlen(a), t);
+    let rb = hc(b, s += 3 + charsize(a), t);
     
     if (t.isPrinted(name)) {
       return '';
@@ -270,11 +288,11 @@ function printList() {
   let buf = [];
   let i = 0;
   for (let n in index) {
-    i += space(buf, 4 - stringlen(n));
+    i += space(buf, 4 - charsize(n));
     buf.push(n.underline, ' ');
     
     buf.push(index[n])
-    i += space(buf, len - stringlen(index[n]));
+    i += space(buf, len - charsize(index[n]));
     
     i += 4 + len;
     if (i >= process.stdout.columns) {
@@ -294,7 +312,7 @@ function space(buf, count) {
 }
 
 
-function stringlen(s) {
+function charsize(s) {
   let l = 0;
   for (let i=0; i<s.length; ++i) {
     if (s.charCodeAt(i) > 127) {
